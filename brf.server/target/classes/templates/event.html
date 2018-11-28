@@ -11,12 +11,12 @@
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/dap.css}" />
 
-<title>Data Access Project Admin</title>
+<title>Page Eventn</title>
 
 </head>
 <body>
 
-	<h1>Consultation du prochain évènement d'un compte microsoft</h1>
+	<h1><span th:text="${titreEvent}"></span></h1>
 
 	<nav>
 		<a th:href="${logoutUrl}" th:text="#{deconnexion}" /></a>
@@ -29,15 +29,15 @@
 	</th:if>
 
 
-	<h3>Calendrier des évènements</h3>
+	<h3><span th:text="#{titreTabEvent}"></span></h3>
 	
 	<table>
 
 		<tr>
-			<th>Organisateur</th>
-			<th>Sujet</th>
-			<th>Debut Event</th>
-			<th>Fin Event</th>
+			<th th:text="#{organisateur}"></th>
+			<th th:text="#{sujet}"></th>
+			<th th:text="#{debutEvent}"></th>
+			<th th:text="#{finEvent}"></th>
 		</tr>
 
 		<th:block th:each="events : ${events}">

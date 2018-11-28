@@ -11,22 +11,21 @@
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/dap.css}" />
 
-<title>Data Access Project Admin</title>
+<title>Admin</title>
 
 </head>
 <body>
-	<h1>welcome</h1>
+	<h1><span th:text="#{welcome}"></span></h1>
 	<div>
-		<span th:text="#{email.nb}">You have&nbsp;:</span> <span
-			th:text="${nbEmails}"></span>
+		<span th:text="#{email.nb}">You have&nbsp;:</span> <span th:text="${nbEmails}"></span>
 	</div>
 	<div>
 		<table>
-			<th>
-				<td>Token</td>
-				<td>Rechargement du token</td>
-				<td>Expiration du token en MS</td>
-			</th>
+			<tr>
+				<th th:text="#{token}"></th>
+				<th th:text="#{refreshToken}"></th>
+				<th th:text="#{expireToken}"></th>
+			</tr>
 			<th:block th:each="map : ${map}">
 				<tr>
 					<td th:text="${map.key}"></td>

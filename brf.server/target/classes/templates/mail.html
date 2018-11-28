@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<h1>Consultation du nombre de mail non lu</h1>
+	<h1><span th:text="#{titreMail}"></span></h1>
 	
 	<nav>
 		<a th:href="${logoutUrl}" th:text="#{deconnexion}" /></a>
@@ -29,14 +29,14 @@
 		<span th:text="${error}"></span>
 	</th:if>
 
-	<p>Voici le nombre de message non lu : <span th:text="${unreadMails}"></span></p>
+	<p><span th:text="#{mailNonLu}"></span> : <span th:text="${unreadMails}"></span></p>
 
 	<table th:block th:each="accounts : ${accounts}">
 		<tr>
-			<th>Nom</th>
-			<th>Sujet</th>
-			<th>Date</th>
-			<th>Corps du mail</th>
+			<th th:text="#{nom}"></th>
+			<th th:text="#{sujet}"></th>
+			<th th:text="#{date}"></th>
+			<th th:text="#{corpsMail}"></th>
 		</tr>
 		<th:block th:each="message : ${messages}">
 			<tr>

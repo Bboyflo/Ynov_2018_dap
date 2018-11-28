@@ -11,12 +11,12 @@
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/dap.css}" />
 
-<title>Data Access Project Admin</title>
+<title>Page contact</title>
 
 </head>
 <body>
 
-	<h1>Consultation du nombre de contacts sur un compte microsoft</h1>
+	<h1><span th:text="#{titreContact}"></span></h1>
 
 	<nav>
 		<a th:href="${logoutUrl}" th:text="#{deconnexion}" /></a>
@@ -28,16 +28,16 @@
 		<span th:text="${error}"></span>
 	</th:if>
 
-	<p>Nombre de contacts : <span th:text="${nbContacts}"></span></p>
+	<p><span th:text="#{nbContacts}"></span> : <span th:text="${nbContacts}"></span></p>
 	
 	
 
-	<h3>Les contacts du compte</h3>
+	<h3><span th:text="#{titreTabContact}"></span></h3>
 	<table>
 		<tr>
-			<th>Name</th>
-			<th>Company</th>
-			<th>Adresse mail</th>
+			<th th:text="#{nom}"></th>
+			<th th:text="#{entreprise}"></th>
+			<th th:text="#{mail}"></th>
 		</tr>
 		<th:block th:each="contacts : ${contacts}">
 			<tr>
