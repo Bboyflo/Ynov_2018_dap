@@ -25,7 +25,6 @@ import com.google.api.client.http.GenericUrl;
 import fr.ynov.dap.dap.data.AppUser;
 import fr.ynov.dap.dap.data.AppUserRepository;
 import fr.ynov.dap.dap.data.GoogleAccountData;
-import fr.ynov.dap.dap.data.GoogleAccountRepository;
 import fr.ynov.dap.dap.service.GoogleService;
 
 /**
@@ -49,12 +48,6 @@ public class GoogleAccount extends GoogleService implements Callback {
      */
     @Autowired
     private AppUserRepository appUserRepostory;
-
-    /**.
-     * declaration de googleAccountRepository
-     */
-    @Autowired
-    private GoogleAccountRepository googleAccountRepository;
 
     /**
      * @throws Exception constructeur

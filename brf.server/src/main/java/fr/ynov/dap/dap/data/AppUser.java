@@ -9,9 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import fr.ynov.dap.dap.microsoft.data.MicrosoftAccountData;
+
 /**
  * @author Florian
- *
  */
 @Entity
 public class AppUser {
@@ -30,10 +31,16 @@ public class AppUser {
     private String name;
 
     /**.
-     * Declaration de la liste des comptes
+     * Declaration de la liste des comptes google
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<GoogleAccountData> googleAccounts;
+
+    /**
+     * Declaration de la liste des comptes Microsoft
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<MicrosoftAccountData> microsoftAccountData;
 
     /**.
      * Creation des compte
@@ -42,6 +49,22 @@ public class AppUser {
     public void addGoogleAccount(final GoogleAccountData account) {
         account.setOwner(this);
         this.getAccounts().add(account);
+    }
+
+    /**
+     * @param account Ajout du compte microsoft
+     */
+    public void addMicrosoftAccount(final MicrosoftAccountData account) {
+        account.setOwner(this);
+        this.microsoftAccountData.add(account);
+    }
+
+    /**.
+     * Ajout des comptes microsoft dans la liste
+     * @return googleAccounts
+     */
+    public List<MicrosoftAccountData> getMicrosoftAccounts() {
+        return microsoftAccountData;
     }
 
     /**.
