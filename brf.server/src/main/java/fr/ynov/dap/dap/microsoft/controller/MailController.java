@@ -2,6 +2,8 @@ package fr.ynov.dap.dap.microsoft.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,10 @@ import fr.ynov.dap.dap.microsoft.service.MailService;
 @Controller
 public class MailController {
 
+    /**.
+     * LOG
+     */
+    protected static final Logger LOG = LogManager.getLogger();
     /**
      * Déclaration de appUserRepository
      */
@@ -44,6 +50,7 @@ public class MailController {
             model.addAttribute("accounts", appUser.getMicrosoftAccounts());
             for (MicrosoftAccountData account : appUser.getMicrosoftAccounts()) {
                 MailNonLu = MailService.NombreDeMail(redirectAttributes, account, model, userKey);
+                LOG.debug("Nombre de mail non lu : " + MailNonLu + " ,Compte total : " + unreadMails);
                 unreadMails += new Integer(MailNonLu).intValue();
             }
             model.addAttribute("logoutUrl", "/logout");

@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.Properties;
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import fr.ynov.dap.dap.config.Config;
@@ -21,6 +23,11 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  * @author Florian
  */
 public class AuthHelper {
+
+    /**.
+     * LOG
+     */
+    protected static final Logger LOG = LogManager.getLogger();
     /**.
      * Déclaration de AUTHORITY
      */
@@ -102,6 +109,7 @@ public class AuthHelper {
      */
     private static String getScopes() {
         StringBuilder sb = new StringBuilder();
+        LOG.debug("AuthHelper GetScope : " + scopes);
         for (String scope : scopes) {
             sb.append(scope + " ");
         }
@@ -117,6 +125,7 @@ public class AuthHelper {
         String authConfigFile = "auth.properties";
         InputStreamReader authConfigStream = new InputStreamReader(new FileInputStream(config.getAuthProperties()),
                 Charset.forName("UTF-8"));
+        LOG.debug("Déclaration du chemin pour auth.properties" + authConfigStream);
 
         if (authConfigStream != null) {
             Properties authProps = new Properties();
@@ -165,6 +174,7 @@ public class AuthHelper {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor).build();
 
+        LOG.debug("AuthHelper - TokenResponse affichage du client : " + client);
         // Create and configure the Retrofit object
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(AUTHORITY)
@@ -214,6 +224,7 @@ public class AuthHelper {
                     .build();
 
             // Generate the token service
+            LOG.debug("AuthHelper - TokenResponse Affichage de retrofit : " + retrofit);
             TokenService tokenService = retrofit.create(TokenService.class);
 
             try {

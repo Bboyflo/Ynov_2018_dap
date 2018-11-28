@@ -2,6 +2,8 @@ package fr.ynov.dap.dap.microsoft.service;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -16,6 +18,10 @@ import fr.ynov.dap.dap.microsoft.data.MicrosoftAccountData;
 @Service
 public class MailService {
 
+    /**.
+     * LOG
+     */
+    protected static final Logger LOG = LogManager.getLogger();
     /**.
      * Déclaration de MAXRESULTS
      */
@@ -58,7 +64,7 @@ public class MailService {
             PagedResult<Message> unreadMails = outlookService.getTotalUnreadMails(filter)
                     .execute().body();
             model.addAttribute("messages", messages.getValue());
-
+            LOG.debug("Message non lu : " + unreadMails.getTotalUnreadMails());
             return unreadMails.getTotalUnreadMails();
         } catch (IOException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());

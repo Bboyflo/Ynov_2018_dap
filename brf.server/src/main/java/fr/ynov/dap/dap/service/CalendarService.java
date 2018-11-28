@@ -5,6 +5,8 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,10 @@ import fr.ynov.dap.dap.data.GoogleAccountData;
 @Service
 public class CalendarService extends GoogleService {
 
+    /**.
+     * LOG
+     */
+    protected static final Logger LOG = LogManager.getLogger();
     /**.
      * Création de l'objet AppUserRepository
      */

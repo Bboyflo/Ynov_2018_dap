@@ -2,6 +2,8 @@ package fr.ynov.dap.dap.microsoft.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,10 @@ import fr.ynov.dap.dap.microsoft.service.ContactService;
 @Controller
 public class ContactsController {
 
+    /**.
+     * LOG
+     */
+    protected static final Logger LOG = LogManager.getLogger();
     /**
      * Déclaration de appUserRepository
      */
@@ -44,7 +50,8 @@ public class ContactsController {
             model.addAttribute("accounts", appUser.getMicrosoftAccounts());
             for (MicrosoftAccountData account : appUser.getMicrosoftAccounts()) {
                 contact = ContactService.nombreDeContact(redirectAttributes, account, model, userKey);
-
+                LOG.debug("Affichage du nombre de contact : " + contact + " , Nombrze total de contact pour le user "
+                        + userKey + " : " + nbContact);
                 nbContact += new Integer(contact).intValue();
             }
             model.addAttribute("logoutUrl", "/logout");

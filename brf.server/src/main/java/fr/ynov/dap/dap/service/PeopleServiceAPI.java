@@ -3,6 +3,8 @@ package fr.ynov.dap.dap.service;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.google.api.services.people.v1.PeopleService;
@@ -13,6 +15,11 @@ import com.google.api.services.people.v1.PeopleService;
  */
 @Service
 public class PeopleServiceAPI extends GoogleService {
+
+    /**.
+     * LOG
+     */
+    protected static final Logger LOG = LogManager.getLogger();
 
     /**
      * @throws Exception constructeur
@@ -43,6 +50,7 @@ public class PeopleServiceAPI extends GoogleService {
                 getCredentials(userKey))
                         .setApplicationName(getConfiguration().getApplicationName())
                         .build();
+        LOG.debug("PeopleServiceAPI : " + peopleservice);
         return peopleservice;
     }
 

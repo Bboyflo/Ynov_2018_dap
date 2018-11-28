@@ -5,6 +5,8 @@ import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,11 @@ import fr.ynov.dap.dap.service.GoogleService;
  */
 @Controller
 public class Welcome extends GoogleService {
+
+    /**.
+     * LOG
+     */
+    protected static final Logger LOG = LogManager.getLogger();
 
     /**
      * @throws Exception constructeur
@@ -38,6 +45,7 @@ public class Welcome extends GoogleService {
     public String welcome(final ModelMap model) throws IOException, GeneralSecurityException {
 
         DataStore<StoredCredential> storedCredential = super.getFlow().getCredentialDataStore();
+        LOG.debug("Welcome variable storedCredential : " + storedCredential);
         Map<String, StoredCredential> map = new HashMap<String, StoredCredential>();
 
         for (String stKey : storedCredential.keySet()) {

@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.security.auth.callback.Callback;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +21,10 @@ import fr.ynov.dap.dap.service.GoogleService;
 @RestController
 public class GmailController extends GoogleService implements Callback {
 
+    /**.
+     * LOG
+     */
+    protected static final Logger LOG = LogManager.getLogger();
     /**.
      * Declaration de gmailservice
      */
@@ -42,6 +48,7 @@ public class GmailController extends GoogleService implements Callback {
     public String emailUnreads(@RequestParam("userKey") final String userKey) throws Exception {
         int messageUnread = 0;
         messageUnread = gmailservice.getMsgsUnread(userKey);
+        LOG.debug(messageUnread);
         String response = "Nombre de mails non lus : " + messageUnread;
         return response;
     }
@@ -55,6 +62,7 @@ public class GmailController extends GoogleService implements Callback {
     public String emailUnreadsORM(@RequestParam("userKey") final String userKey) throws Exception {
         int messageUnread = 0;
         messageUnread = gmailservice.getMsgsUnreadORM(userKey);
+        LOG.debug(messageUnread);
         String response = "Nombre de mails non lus : " + messageUnread;
         return response;
     }
