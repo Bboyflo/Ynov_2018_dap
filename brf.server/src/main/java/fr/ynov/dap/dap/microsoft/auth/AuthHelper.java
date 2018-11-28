@@ -1,14 +1,17 @@
 package fr.ynov.dap.dap.microsoft.auth;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.Calendar;
 import java.util.Properties;
 import java.util.UUID;
 
 import org.springframework.web.util.UriComponentsBuilder;
 
+import fr.ynov.dap.dap.config.Config;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -108,9 +111,12 @@ public class AuthHelper {
     /**
      * @throws IOException fonction
      */
+    @SuppressWarnings("unused")
     private static void loadConfig() throws IOException {
+        Config config = new Config();
         String authConfigFile = "auth.properties";
-        InputStream authConfigStream = AuthHelper.class.getClassLoader().getResourceAsStream(authConfigFile);
+        InputStreamReader authConfigStream = new InputStreamReader(new FileInputStream(config.getAuthProperties()),
+                Charset.forName("UTF-8"));
 
         if (authConfigStream != null) {
             Properties authProps = new Properties();

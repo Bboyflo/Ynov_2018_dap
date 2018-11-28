@@ -20,6 +20,12 @@ public class Config {
     private static final String CREDENTIALS_FILE_PATH = System.getProperty("user.home")
             + System.getProperty("file.separator") + "Java_Serveur" + System.getProperty("file.separator")
             + "credentials.json";
+    /**.
+     * CREDENTIALS_FILE_PATH
+     */
+    private static final String AUTH_PROPERTIES = System.getProperty("user.home")
+            + System.getProperty("file.separator") + "Java_Serveur" + System.getProperty("file.separator")
+            + "auth.properties";
 
     /**.
      * applicationName
@@ -33,6 +39,10 @@ public class Config {
      * credentialsFilePath
      */
     private String credentialsFilePath;
+    /**.
+     * authproperties
+     */
+    private String authProperties;
 
     /**.
      * constructeur de la classe
@@ -41,6 +51,7 @@ public class Config {
         applicationName = APPLICATION_NAME;
         tokensDirectoryPath = TOKENS_DIRECTORY_PATH;
         credentialsFilePath = CREDENTIALS_FILE_PATH;
+        authProperties = AUTH_PROPERTIES;
     }
 
     /**
@@ -83,6 +94,20 @@ public class Config {
      */
     public void setCredentialsFilePath(final String theCredentialsPath) {
         credentialsFilePath = theCredentialsPath;
+    }
+
+    /**
+     * @return the authProperties
+     */
+    public String getAuthProperties() {
+        return authProperties;
+    }
+
+    /**
+     * @param authProperties the authProperties to set
+     */
+    public void setAuthProperties(String authProperties) {
+        this.authProperties = authProperties;
     }
 
     /**
